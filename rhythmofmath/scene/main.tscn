@@ -1,0 +1,104 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1uim86gge7po"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_t10b3"]
+[ext_resource type="Texture2D" uid="uid://1ak5woqhhor1" path="res://assets/bg 1.jpg" id="2_072vl"]
+[ext_resource type="Texture2D" uid="uid://bfl8bpl0xgvif" path="res://assets/bg3.jpg" id="3_hatb4"]
+[ext_resource type="Texture2D" uid="uid://djxlfbh3jexfb" path="res://assets/wood.jpg" id="4_4k64h"]
+[ext_resource type="AudioStream" uid="uid://dq03sh4kiisba" path="res://assets/MUSIC/BEAT1.mp3" id="5_rbk7e"]
+
+[node name="MAIN" type="Node2D"]
+script = ExtResource("1_t10b3")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="background_environment" type="Node2D" parent="."]
+
+[node name="background" type="Sprite2D" parent="background_environment"]
+position = Vector2(510.5, 330.5)
+scale = Vector2(1.50139, 1.94167)
+texture = ExtResource("2_072vl")
+
+[node name="question_panel" type="Sprite2D" parent="background_environment"]
+texture_filter = 1
+position = Vector2(512.08, 730.655)
+rotation = 6.28318
+scale = Vector2(2.28082, 0.204838)
+texture = ExtResource("3_hatb4")
+
+[node name="TextureRect" type="TextureRect" parent="background_environment"]
+offset_left = -56.0
+offset_top = 680.0
+offset_right = 1198.0
+offset_bottom = 2620.0
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("4_4k64h")
+
+[node name="TextureRect3" type="TextureRect" parent="background_environment"]
+offset_left = 1016.0
+offset_top = 681.0
+offset_right = 2270.0
+offset_bottom = 3041.0
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("4_4k64h")
+
+[node name="TextureRect2" type="TextureRect" parent="background_environment"]
+offset_left = -55.0
+offset_top = 759.0
+offset_right = 22185.0
+offset_bottom = 1595.0
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("4_4k64h")
+
+[node name="questions" type="Label" parent="."]
+offset_left = 358.0
+offset_top = 690.0
+offset_right = 514.0
+offset_bottom = 730.0
+scale = Vector2(2, 2)
+text = "\"\""
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(512, 385)
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(-36.728, 38)
+scale = Vector2(1.05088, 1)
+points = PackedVector2Array(-10, 649, 1041, 649)
+width = 15.0
+texture = ExtResource("4_4k64h")
+texture_mode = 2
+
+[node name="score" type="Label" parent="."]
+offset_left = 9.0
+offset_top = 694.0
+offset_right = 69.0
+offset_bottom = 717.0
+text = "score: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Lives_LABEL" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 725.0
+offset_right = 65.0
+offset_bottom = 748.0
+text = "Lives: 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverLabel" type="Label" parent="."]
+offset_left = 141.0
+offset_top = 183.0
+offset_right = 392.0
+offset_bottom = 274.0
+scale = Vector2(3, 3)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BEAT" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_rbk7e")
+autoplay = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

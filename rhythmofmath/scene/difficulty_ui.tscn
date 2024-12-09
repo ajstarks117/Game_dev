@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://dyygkiqccurjp"]
+
+[ext_resource type="Texture2D" uid="uid://1ak5woqhhor1" path="res://assets/bg 1.jpg" id="1_0w5fo"]
+[ext_resource type="Script" path="res://scripts/difficulty_ui.gd" id="1_arw2x"]
+[ext_resource type="Texture2D" uid="uid://cuom4835ttq45" path="res://assets/mute.svg" id="2_2fjxr"]
+[ext_resource type="Texture2D" uid="uid://byebm6d0rcw0p" path="res://assets/unmute.svg" id="3_1c13a"]
+[ext_resource type="AudioStream" uid="uid://bnb1b8i50wcgk" path="res://assets/bg_audio.mp3" id="4_ci54u"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6067k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2fjxr")
+}],
+"loop": true,
+"name": &"mute",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1c13a")
+}],
+"loop": true,
+"name": &"unmute",
+"speed": 5.0
+}]
+
+[node name="difficulty_ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_arw2x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(512.5, 383.5)
+scale = Vector2(1.42083, 2.13611)
+texture = ExtResource("1_0w5fo")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 290.0
+offset_right = 557.0
+offset_bottom = 391.0
+scale = Vector2(1.5, 1.5)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="EASY" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "EASY
+"
+
+[node name="MEDIUM" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "MEDIUM
+"
+
+[node name="HARD" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "HARD
+"
+
+[node name="volume" type="Button" parent="."]
+offset_left = 170.0
+offset_top = 192.0
+offset_right = 190.0
+offset_bottom = 208.0
+scale = Vector2(3, 3)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="volume"]
+texture_filter = 1
+position = Vector2(10.6667, 8)
+sprite_frames = SubResource("SpriteFrames_6067k")
+animation = &"unmute"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ci54u")
+volume_db = 3.962
+autoplay = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 344.0
+offset_top = 208.0
+offset_right = 589.0
+offset_bottom = 267.0
+scale = Vector2(1.5, 1.5)
+text = "➕ ✖ MATH RHYTHM ➗ ➖
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/EASY" to="." method="_on_easy_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MEDIUM" to="." method="_on_medium_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HARD" to="." method="_on_hard_pressed"]
