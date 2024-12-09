@@ -121,7 +121,7 @@ func update_lives_label():
 
 func update_lives(is_correct: bool):
 	if not is_correct:
-		Lives -= 0.5
+		Lives -= 1
 
 		
 	if Lives <= 0:
